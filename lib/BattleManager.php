@@ -58,12 +58,7 @@ class BattleManager
             $losingShip = $ship2;
             $usedSpatiodriveBoosters = $ship1UsedSpatiodriveBoosters;
         }
-
-        return array(
-            'winning_ship' => $winningShip,
-            'losing_ship' => $losingShip,
-            'used_spatiodrive_boosters' => $usedSpatiodriveBoosters,
-        );
+        return new BattleResult($usedSpatiodriveBoosters, $winningShip, $losingShip);
     }
     private function usedSpatiodriveBoosters(Ship $ship)
     {

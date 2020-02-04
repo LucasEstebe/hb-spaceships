@@ -37,7 +37,7 @@ $ship2 = $ships[$ship2Name];
 
 // On passe toutes nos données dans la fonction battle(), et on met le resultat dans $outcome ( = "résultat")
 $battleManager = new BattleManager();
-$outcome = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
+$battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
 ?>
 
 <?php include('_partials/_header.php'); ?>
@@ -62,21 +62,21 @@ $outcome = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity
 
         <h3 class="text-center audiowide">
             Gagnant :
-            <?php if ($outcome['winning_ship']) : ?>
-                <?php echo $outcome['winning_ship']->getName(); ?>
+            <?php if ($battleResult->getWinningShip()) : ?>
+                <?php echo $battleResult->getWinningShip()->getName(); ?>
             <?php else : ?>
                 Personne
             <?php endif; ?>
         </h3>
         <p class="text-center">
-            <?php if ($outcome['winning_ship'] == null) : ?>
+            <?php if ($battleResult->getWinningShip() == null) : ?>
                 Les deux opposants se sont détruits lors de leur bataille épique.
             <?php else : ?>
-                Le groupe de <?php echo $outcome['winning_ship']->getName(); ?>
-                <?php if ($outcome['used_spatiodrive_boosters']) : ?>
+                Le groupe de <?php echo $battleResult->getWinningShip()->getName(); ?>
+                <?php if ($battleResult->getUsedSpatiodriveBoosters()) : ?>
                     a utilisé son booster Spatiodrive pour détruire l'adversaire !
                 <?php else : ?>
-                    a été plus puissant et a détruit le groupe de <?php echo $outcome['losing_ship']->getName() ?>s
+                    a été plus puissant et a détruit le groupe de <?php echo $battleResult->getLosingShip()->getName() ?>s
                 <?php endif; ?>
             <?php endif; ?>
         </p>
