@@ -13,26 +13,41 @@ class Ship {
         $this->isUnderRepair = mt_rand(1, 100) < 30;
     }
 
+    /**
+     * @param string $name
+     */
     public function setName(string $name)
     {
         $this->name = $name;
     }
 
+    /**
+     * @param int $weaponPower
+     */
     public function setWeaponPower(int $weaponPower)
     {
         $this->weaponPower = $weaponPower;
     }
 
+    /**
+     * @param int $spatiodriveBooster
+     */
     public function setSpatiodriveBooster(int $spatiodriveBooster)
     {
         $this->spatiodriveBooster = $spatiodriveBooster;
     }
 
+    /**
+     * @param int $strength
+     */
     public function setStrength(int $strength)
     {
         $this->strength = $strength;
     }
 
+    /**
+     * @param bool $isUnderRepair
+     */
     public function setIsUnderRepair(bool $isUnderRepair)
     {
         $this->isUnderRepair = $isUnderRepair;
@@ -74,11 +89,18 @@ class Ship {
         return $this->isUnderRepair;
     }
 
+    /**
+     * @return bool
+     */
     public function isFunctional()
     {
         return !$this->isUnderRepair;
     }
 
+    /**
+     * @param bool $useShortFormat
+     * @return string
+     */
     public function getNameAndSpecs(bool $useShortFormat = false) {
 
     if ($useShortFormat) {
@@ -99,6 +121,10 @@ class Ship {
     }
     }
 
+    /**
+     * @param Ship $ship
+     * @return bool
+     */
     public function doesThisShipHasMoreStrengthThanMe(Ship $ship)
     {
     return $ship->strength > $this->strength;
