@@ -1,6 +1,7 @@
 <?php
 session_start();
-require __DIR__ . '/functions.php';
+require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/lib/BattleManager.php';
 
 $ships = getShips();
 
@@ -36,7 +37,8 @@ $ship1 = $ships[$ship1Name];
 $ship2 = $ships[$ship2Name];
 
 // On passe toutes nos données dans la fonction battle(), et on met le resultat dans $outcome ( = "résultat")
-$outcome = battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
+$battleManager = new BattleManager();
+$outcome = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
 ?>
 
 <?php include('_partials/_header.php'); ?>
