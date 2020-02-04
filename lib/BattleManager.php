@@ -60,6 +60,11 @@ class BattleManager
         }
         return new BattleResult($usedSpatiodriveBoosters, $winningShip, $losingShip);
     }
+
+    /**
+     * @param Ship $ship
+     * @return bool
+     */
     private function usedSpatiodriveBoosters(Ship $ship)
     {
         $spatiodriveBoostersProbability = $ship->getSpatiodriveBooster() / 100;

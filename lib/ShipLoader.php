@@ -3,6 +3,9 @@ require_once __DIR__ . '/../bootstrap.php';
 
 class ShipLoader
 {
+    /**
+     * @return array of all ships
+     */
     function getShips() {
 
         $ships = [];
