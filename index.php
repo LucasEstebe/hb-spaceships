@@ -1,7 +1,10 @@
 <?php
 session_start();
-require __DIR__ . '/functions.php';
-$ships = getShips();
+require_once __DIR__ . '/lib/ShipLoader.php';
+
+$shipLoader = new ShipLoader();
+$ships = $shipLoader->getShips();
+
 $errorMessage = null;
 if (isset($_SESSION['error'])) {
     switch ($_SESSION['error']) {

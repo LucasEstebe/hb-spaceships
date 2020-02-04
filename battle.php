@@ -1,9 +1,10 @@
 <?php
 session_start();
-require_once __DIR__ . '/functions.php';
 require_once __DIR__ . '/lib/BattleManager.php';
+require_once __DIR__ . '/lib/ShipLoader.php';
 
-$ships = getShips();
+$shipLoader = new ShipLoader();
+$ships = $shipLoader->getShips();
 
 // On vérifie que les données du formulaire existent :
 $ship1Name      = isset($_POST['ship1_name']) ? $_POST['ship1_name'] : null;
