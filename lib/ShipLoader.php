@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . './Ship.php';
+require_once __DIR__ . '/../bootstrap.php';
 
 class ShipLoader
 {
