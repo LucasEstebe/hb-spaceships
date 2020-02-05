@@ -3,6 +3,20 @@ require_once __DIR__ . '/../bootstrap.php';
 
 class ShipLoader
 {
+    private $pdo;
+
+    /**
+     * @return PDO
+     */
+    private function getPDO()
+    {
+        if ($this->pdo === null) {
+            $this->pdo = new PDO('mysql:host=localhost;dbname=hbstarship', 'root');
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+        return $this->pdo;
+    }
+
     /**
      * @return Ship[]
      */
@@ -22,9 +36,8 @@ class ShipLoader
      * @return Ship[]
      */
     private function queryForShips(){
-        $bdd = new PDO('mysql:host=localhost;dbname=hbstarship;charset=utf8;port=3306', 'root', '');
         $query = "SELECT * FROM ship";
-        $request = $bdd->prepare($query);
+        $request = $this->getPDO()->prepare($query);
         $request->execute();
         return $request->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -34,9 +47,8 @@ class ShipLoader
      * @return Ship
      */
     public function findOneById(int $id){
-        $bdd = new PDO('mysql:host=localhost;dbname=hbstarship;charset=utf8;port=3306', 'root', '');
         $query = "SELECT * FROM ship WHERE id = :id";
-        $request = $bdd->prepare($query);
+        $request = $this->getPDO()->prepare($query);
         $request->execute([
             ":id" => $id,
         ]);

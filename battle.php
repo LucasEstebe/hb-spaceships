@@ -33,9 +33,7 @@ if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
 // en passant en clé du tableau $ship1Id et $ship2Id qui sont les valeurs
 // venant de POST (déclarées en début du fichier)
 $ship1 = $shipLoader->findOneById($ship1Id);
-var_dump($ship1);
 $ship2 = $shipLoader->findOneById($ship2Id);
-var_dump($ship2);
 
 // On passe toutes nos données dans la fonction battle(), et on met le resultat dans $outcome ( = "résultat")
 $battleManager = new BattleManager();
