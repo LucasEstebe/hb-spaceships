@@ -2,6 +2,7 @@
 
 class Ship {
 
+    private $id;
     private $name = "";
     private $weaponPower = 0;
     private $spatiodriveBooster = 0;
@@ -13,6 +14,14 @@ class Ship {
         $this->isUnderRepair = mt_rand(1, 100) < 30;
     }
 
+    //////////////// SETTERS ///////////////////
+    /**
+     * @param string $id
+     */
+    public function setId(string $id)
+    {
+        $this->id = $id;
+    }
     /**
      * @param string $name
      */
@@ -53,10 +62,14 @@ class Ship {
         $this->isUnderRepair = $isUnderRepair;
     }
 
+    //////////////// GETTERS ///////////////////
 
-    public function sayHello()
+    /**
+     * @return int
+     */
+    public function getId()
     {
-    echo 'Hello!';
+        return $this->id;
     }
 
     public function getName()

@@ -5,19 +5,19 @@ $shipLoader = new ShipLoader();
 $ships = $shipLoader->getShips();
 
 // On vérifie que les données du formulaire existent :
-$ship1Name      = isset($_POST['ship1_name']) ? $_POST['ship1_name'] : null;
+$ship1Id      = isset($_POST['ship1_id']) ? $_POST['ship1_id'] : null;
 $ship1Quantity  = isset($_POST['ship1_quantity']) ? $_POST['ship1_quantity'] : 1;
-$ship2Name      = isset($_POST['ship2_name']) ? $_POST['ship2_name'] : null;
+$ship2Id      = isset($_POST['ship2_id']) ? $_POST['ship2_id'] : null;
 $ship2Quantity  = isset($_POST['ship2_quantity']) ? $_POST['ship2_quantity'] : 1;
 
 // On redirige avec une erreur en session.
-if (!$ship1Name || !$ship2Name) {
+if (!$ship1Id || !$ship2Id) {
     $_SESSION['error'] = 'missing_data';
     header('Location: index.php');
     die;
 }
 
-if (!isset($ships[$ship1Name]) || !isset($ships[$ship2Name])) {
+if (!$shipLoader->findOneById($ship1Id) || !$shipLoader->findOneById($ship2Id)) {
     $_SESSION['error'] = 'bad_ships';
     header('Location: index.php');
     die;
@@ -29,11 +29,13 @@ if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
     die;
 }
 
-// On récupère dans le tableau $ships (liste des Ships) notre vaisseau,
-// en passant en clé du tableau $ship1Name et $ship2Name qui sont les valeurs
+// On récupère dans la BDD,
+// en passant en clé du tableau $ship1Id et $ship2Id qui sont les valeurs
 // venant de POST (déclarées en début du fichier)
-$ship1 = $ships[$ship1Name];
-$ship2 = $ships[$ship2Name];
+$ship1 = $shipLoader->findOneById($ship1Id);
+var_dump($ship1);
+$ship2 = $shipLoader->findOneById($ship2Id);
+var_dump($ship2);
 
 // On passe toutes nos données dans la fonction battle(), et on met le resultat dans $outcome ( = "résultat")
 $battleManager = new BattleManager();
