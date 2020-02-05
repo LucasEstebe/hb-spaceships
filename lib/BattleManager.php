@@ -6,7 +6,7 @@ class BattleManager
     /**
      * L'algorithme de combat super complexe !
      *
-     * @return array [winning_ship, losing_ship, used_jedi_powers]
+     * @return BattleResult
      */
     public function battle(Ship $ship1, $ship1Quantity, Ship $ship2, $ship2Quantity)
     {
@@ -41,6 +41,10 @@ class BattleManager
             $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
             $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
         }
+        // Update Ship strength
+        $ship1->setStrength($ship1Health);
+        $ship2->setStrength($ship2Health);
+
 
         // Si les 2 groupes tombent à 0 au même tour :
         if ($ship1Health <= 0 && $ship2Health <= 0) {

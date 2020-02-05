@@ -68,6 +68,13 @@ $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Qua
                 Personne
             <?php endif; ?>
         </h3>
+        <h3>Résistance restante finale:</h3>
+        <dl class="dl-horizontal">
+            <dt><?php echo $ship1->getName(); ?></dt>
+            <dd>Résistance : <?php echo $ship1->getStrength(); ?></dd>
+            <dt><?php echo $ship2->getName(); ?></dt>
+            <dd>Résistance : <?php echo $ship2->getStrength(); ?></dd>
+        </dl>
         <p class="text-center">
             <?php if (!$battleResult->isThereAWinner()) : ?>
                 Les deux opposants se sont détruits lors de leur bataille épique.
