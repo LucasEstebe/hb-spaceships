@@ -14,7 +14,7 @@ class BattleResult {
      * @param Ship $winningShip
      * @param Ship $losingShip
      */
-    public function __construct(bool $usedSpatiodriveBoosters, Ship $winningShip, Ship $losingShip)
+    public function __construct(bool $usedSpatiodriveBoosters, ?Ship $winningShip, ?Ship $losingShip)
     {
         $this->usedSpatiodriveBoosters = $usedSpatiodriveBoosters;
         $this->winningShip = $winningShip;
@@ -29,16 +29,22 @@ class BattleResult {
 }
 
     /**
-     * @return Ship
+     * @return Ship|null
      */
     public function getWinningShip(){
         return $this->winningShip;
     }
 
     /**
-     * @return Ship
+     * @return Ship|null
      */
     public function getLosingShip(){
         return $this->losingShip;
+    }
+    /**
+     * @return bool
+     */
+    public function isThereAWinner() : bool {
+        return $this->getWinningShip() !== null;
     }
 }

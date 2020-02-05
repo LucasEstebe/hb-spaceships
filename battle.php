@@ -62,14 +62,14 @@ $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Qua
 
         <h3 class="text-center audiowide">
             Gagnant :
-            <?php if ($battleResult->getWinningShip()) : ?>
+            <?php if ($battleResult->isThereAWinner()) : ?>
                 <?php echo $battleResult->getWinningShip()->getName(); ?>
             <?php else : ?>
                 Personne
             <?php endif; ?>
         </h3>
         <p class="text-center">
-            <?php if ($battleResult->getWinningShip() == null) : ?>
+            <?php if (!$battleResult->isThereAWinner()) : ?>
                 Les deux opposants se sont détruits lors de leur bataille épique.
             <?php else : ?>
                 Le groupe de <?php echo $battleResult->getWinningShip()->getName(); ?>
