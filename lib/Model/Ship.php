@@ -126,7 +126,7 @@ class Ship {
     }
     else {
     return sprintf(
-    'Vaisseau : (Force: %s, Booster spatiodrive: %s, Résistance: %s)',
+    'Vaisseau %s: (Force: %s, Booster spatiodrive: %s, Résistance: %s)',
     $this->name,
     $this->weaponPower,
     $this->spatiodriveBooster,

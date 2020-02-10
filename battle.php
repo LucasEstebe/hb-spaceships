@@ -1,7 +1,11 @@
 <?php
 require_once __DIR__ . '/bootstrap.php';
 
-$shipLoader = new ShipLoader();
+
+$container = new Container($configuration);
+$pdo = $container->getPDO();
+
+$shipLoader = $container->getShipLoader();
 $ships = $shipLoader->getShips();
 
 // On vérifie que les données du formulaire existent :
@@ -9,6 +13,7 @@ $ship1Id      = isset($_POST['ship1_id']) ? $_POST['ship1_id'] : null;
 $ship1Quantity  = isset($_POST['ship1_quantity']) ? $_POST['ship1_quantity'] : 1;
 $ship2Id      = isset($_POST['ship2_id']) ? $_POST['ship2_id'] : null;
 $ship2Quantity  = isset($_POST['ship2_quantity']) ? $_POST['ship2_quantity'] : 1;
+
 
 // On redirige avec une erreur en session.
 if (!$ship1Id || !$ship2Id) {
@@ -18,10 +23,12 @@ if (!$ship1Id || !$ship2Id) {
 }
 
 if (!$shipLoader->findOneById($ship1Id) || !$shipLoader->findOneById($ship2Id)) {
-    $_SESSION['error'] = 'bad_ships';
+       $_SESSION['error'] = 'bad_ships';
     header('Location: index.php');
     die;
 }
+
+
 
 if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
     $_SESSION['error'] = 'bad_quantities';
@@ -36,7 +43,7 @@ $ship1 = $shipLoader->findOneById($ship1Id);
 $ship2 = $shipLoader->findOneById($ship2Id);
 
 // On passe toutes nos données dans la fonction battle(), et on met le resultat dans $outcome ( = "résultat")
-$battleManager = new BattleManager();
+$battleManager = $container->getBattleManager();
 $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
 ?>
 

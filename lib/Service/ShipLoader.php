@@ -1,20 +1,21 @@
 <?php
-require_once __DIR__ . '/../bootstrap.php';
+require_once __DIR__ . '/../../bootstrap.php';
 
 class ShipLoader
 {
     private $pdo;
+
+    public function __construct(PDO $pdo)
+    {
+        $this->pdo = $pdo;
+    }
 
     /**
      * @return PDO
      */
     private function getPDO()
     {
-        if ($this->pdo === null) {
-            $this->pdo = new PDO('mysql:host=localhost;dbname=hbstarship', 'root');
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }
-        return $this->pdo;
+       return $this->pdo;
     }
 
     /**
@@ -67,7 +68,7 @@ class ShipLoader
      * @param array $shipArray
      * @return Ship
      */
-    public function arrayToShip(array $shipArray){
+    private function arrayToShip(array $shipArray){
         $newShip = new Ship();
         $newShip->setId($shipArray['id']);
         $newShip->setName($shipArray['name']);

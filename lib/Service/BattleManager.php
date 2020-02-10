@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../bootstrap.php';
+require_once __DIR__ . '/../../bootstrap.php';
 
 class BattleManager
 {
@@ -17,7 +17,7 @@ class BattleManager
 
         // Par défaut, personne n'a utilisé le spatiodrive booster
         $ship1UsedSpatiodriveBoosters = false;
-        $ship1UsedSpatiodriveBoosters = false;
+        $ship2UsedSpatiodriveBoosters = false;
 
         // Tant que les 2 groupes ont une résistance supérieure à 0, on combat :
         while ($ship1Health > 0 && $ship2Health > 0) {
@@ -31,7 +31,7 @@ class BattleManager
             }
             if ($this->usedSpatiodriveBoosters($ship2)) {
                 $ship1Health = 0;
-                $ship1UsedSpatiodriveBoosters = true;
+                $ship2UsedSpatiodriveBoosters = true;
                 // Si le spatiodrive booster a été utilisé, on break la boucle while
                 break;
             }

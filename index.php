@@ -1,7 +1,11 @@
 <?php
 require_once __DIR__ . '/bootstrap.php';
 
-$shipLoader = new ShipLoader();
+
+$container = new Container($configuration);
+$pdo = $container->getPDO();
+
+$shipLoader = $container->getShipLoader();
 $ships = $shipLoader->getShips();
 
 $errorMessage = null;
